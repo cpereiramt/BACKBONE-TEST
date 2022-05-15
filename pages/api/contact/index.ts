@@ -8,14 +8,16 @@ import { testContacts } from "../../../model/TestData"
  * @param req NextApiRequest
  * @param res NextApiResponse
  */
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { method, body } = req
 
   try {
     res.setHeader("Content-Type", "application/json")
     switch (method) {
       case "GET":
-        res.status(200).json({firstName: "First", lastName: "Last", email: "cpere@gmail.c", phone: "(123)456-7890"})
+        const data = await fetch('https://bkbnchallenge.herokuapp.com/contacts')
+        const contacts = await data.json();
+        res.status(200).json({ contacts: contacts.results });
         break
       case "POST":
         if (!body) {

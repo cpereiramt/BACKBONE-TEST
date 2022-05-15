@@ -1,40 +1,36 @@
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
-import React from "react"
-import { AppContext } from "../components/AppContext"
-import { fetchAllContactsAction } from "../store/contact"
 
-
-const useStyles = makeStyles((_: Theme) =>
-  createStyles({
-    root: {},
-  })
-)
-
+import React, { useEffect } from "react";
+import ContactTable from "../components/Table/";
+import { useContact } from "../hooks";
+import { Contact } from '../model/Contact';
+import appStyles from "../styles/appStyles";
 type Props = {}
 
 function Index(props: Props) {
-  const classes = useStyles(props)
-  return (
+  const { fetchAllContacts } = useContact();
+  const [contacts, setContacts] = React.useState<Contact[]>([])
 
-    <div className={classes.root}>
-      <p>index page{console.log(props)}</p>
+
+    useEffect(() => {
+    const results = fetchAllContacts();
+      results.then(data => setContacts(data.contacts.contacts));
+
+  }, [])
+  const classes = appStyles(props)
+   return (
+
+     <div className={classes.indexBackground}>
+       <div className={classes.indexTabletDiv}>
+         <ContactTable contacts={contacts} />
+         </div>
     </div>
-  )
+  );
+
 }
 
 /**
  * @see https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
  */
-Index.getInitialProps = async (ctx: AppContext): Promise<Props> => {
-  const { store } = ctx
-   store.dispatch(
-    fetchAllContactsAction({
-      offset: 3,
-      limit: 10,
-   })
-  )
-  return {props:'props'}
 
-}
 
 export default Index

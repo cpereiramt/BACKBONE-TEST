@@ -19,7 +19,7 @@ function Contact(props: Props) {
   }, [])
   return (
     <div className={classes.root}>
-      <h1>contacts :</h1>
+      <h1>contacts: </h1>
     </div>
   )
 }
