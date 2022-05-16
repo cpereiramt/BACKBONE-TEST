@@ -1,0 +1,3 @@
+- This project is a implementation of nextJS using typescript, redux, react-redux, redux-thunk, material ui between others dependencies.
+- This project came to the actual state in only one day, because I only had time on sunday, and if I had more time I would improve this project a little bit.
+- On redux part particulaly in redux-toolkit the application has a issue that sometimes the action is not dispatched to the redux and a exception is raise, I still search possible solutions to fix this problem. 

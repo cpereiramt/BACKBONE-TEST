@@ -19,8 +19,8 @@ const AddContact = (props: Props) => {
     email: 'cpereiramt@gmail.com',
     phone: '5565992188269',
   }
-  const handleCreateContact =  async () => {
-   await addContact(newContact);
+  const handleCreateContact =   () => {
+    addContact(newContact);
 
   }
   const { } = props
