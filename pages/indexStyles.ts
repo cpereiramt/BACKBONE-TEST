@@ -6,9 +6,11 @@ const appStyles = makeStyles((theme: Theme) =>
     indexTabletDiv: {
       display: "flex",
       alignItems: "center",
+      justifyContent: "center",
       width: "100%",
       maxWidth: "1000px",
-      margin: "0 auto",    }
+      margin: "0 auto",
+    }
   })
 )
 

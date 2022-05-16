@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import ContactTable from "../components/Table/";
 import { useContact } from "../hooks";
 import { Contact } from '../model/Contact';
-import appStyles from "../styles/appStyles";
+import appStyles from "./indexStyles";
 type Props = {}
 
 function Index(props: Props) {
@@ -12,8 +12,9 @@ function Index(props: Props) {
 
 
     useEffect(() => {
-    const results = fetchAllContacts();
-      results.then(data => setContacts(data.contacts.contacts));
+      const results = fetchAllContacts();
+      results.then(data => console.log(data));
+      results.then(data => setContacts(data.contacts));
 
   }, [])
   const classes = appStyles(props)
@@ -21,7 +22,7 @@ function Index(props: Props) {
 
      <div className={classes.indexBackground}>
        <div className={classes.indexTabletDiv}>
-         <ContactTable contacts={contacts} />
+         <ContactTable contacts={contacts}  />
          </div>
     </div>
   );
