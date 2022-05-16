@@ -7,7 +7,7 @@ export interface ContactState extends EntityState<Contact> {
 }
 
 export const adapter = createEntityAdapter<Contact>({
-  selectId: (contact: Contact) => contact.id,
+  selectId: (contacts: Contact) => contacts.id,
 })
 
 export const initialState: ContactState = adapter.getInitialState({

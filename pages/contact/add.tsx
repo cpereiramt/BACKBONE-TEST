@@ -13,13 +13,14 @@ type Props = { }
 const AddContact = (props: Props) => {
     const { addContact } = useContact();
   const newContact = {
+    id:'455666gghghttttytyty',
     firstName: 'clayton',
     lastName: 'pereira',
     email: 'cpereiramt@gmail.com',
     phone: '5565992188269',
   }
-  const handleCreateContact =  () => {
-    addContact(newContact);
+  const handleCreateContact =  async () => {
+   await addContact(newContact);
 
   }
   const { } = props

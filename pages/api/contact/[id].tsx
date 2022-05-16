@@ -48,22 +48,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         res.status(200).json({result })
         break
-      case "POST":
-        const insertedContact = {
-          firstName: 'testName',
-          lastName: 'testLastName',
-          email: 'testEmail',
-          phone: '5565992188269',
-        }
-        const inserted = await fetch(`https://bkbnchallenge.herokuapp.com/contacts/${id}`, {
-       method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({contanct: insertedContact}),
-    })
-        res.status(200).json(`inserted ${inserted}`)
-        break
+
       case "DELETE":
          const deleteResponse = await fetch(`https://bkbnchallenge.herokuapp.com/contacts/${id}`)
          deleteResponse.json();

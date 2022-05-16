@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Contact } from "../../../model";
 import { ApiErrorResponse } from "../../../model/ApiErrorResponse";
-import { testContacts } from "../../../model/TestData";
 
 /**
  * CONTACT restful-api
@@ -36,22 +34,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(200).json( contacts );
         break
       case "POST":
-        if (!body) {
-          const error: ApiErrorResponse = {
-            statusCode: 400,
-            message: `Request body is required.`,
-          }
-          res.status(400).json(error)
-          return
+        const insertedContact = {
+          id:'23232ewwewe232323232',
+          firstName: 'testName',
+          lastName: 'testLastName',
+          email: 'testEmail',
+          phone: '5565992188269',
         }
-
-        const newContact: Contact = body
-        const lastContact = testContacts.slice(-1)[0]
-        newContact.id = lastContact.id + 1
-        newContact.firstName = testContacts.slice(-1)[0].firstName
-        newContact.lastName = testContacts.slice(-1)[0].lastName
-        testContacts.push(newContact)
-        res.status(201).json(newContact)
+        const inserted = await fetch(`https://bkbnchallenge.herokuapp.com/contacts/`, {
+       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({  insertedContact}),
+    })
+        res.status(200).json(inserted.json());
         break
       default:
         res.setHeader("Allow", ["GET", "POST"])

@@ -38,14 +38,13 @@ export const fetchContactAction = createAsyncThunk(
 export const addContactAction = createAsyncThunk(
   `${FeatureKey.CONTACT}/add`,
   async (arg: { contact: Contact }) => {
-    const { contact } = arg
-    const url = `/api/contact`
+       const url = `/api/contact`
     const result: Contact = await fetch(url, {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(contact),
+      body: JSON.stringify(arg),
     }).then((response: Response) => response.json())
-    return { contact: result }
+    return { contacts: result }
   }
 )
 
@@ -54,15 +53,15 @@ export const addContactAction = createAsyncThunk(
  */
 export const editContactAction = createAsyncThunk(
   `${FeatureKey.CONTACT}/edit`,
-  async (arg: { contact: Contact }) => {
+   (arg: { contact: Contact }) => {
     const { contact } = arg
     const url = `/api/contact/${arg.id}`
-    const result: Contact = await fetch(url, {
+    const result: Contact =  fetch(url, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contact),
     }).then((response: Response) => response.json())
-    return { contact: result }
+    return { contacts: result }
   }
 )
 

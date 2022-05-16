@@ -43,8 +43,8 @@ export const contactReducer = createReducer(
         return { ...state, isFetching: true, selectedId: contact?.id }
       })
       .addCase(addContactAction.fulfilled, (state, action) => {
-        const { contact } = action.payload
-        return adapter.addOne({ ...state, isFetching: false }, contact)
+        const { contacts } = action.payload
+        return adapter.addOne({ ...state, isFetching: false }, contacts)
       })
       .addCase(addContactAction.rejected, (state) => {
         return { ...state, isFetching: false }
@@ -55,12 +55,12 @@ export const contactReducer = createReducer(
         return { ...state, isFetching: true, selectedId: contact?.id }
       })
       .addCase(editContactAction.fulfilled, (state, action) => {
-        const { contact } = action.payload
+        const { contacts } = action.payload
         return adapter.updateOne(
           { ...state, isFetching: false },
           {
-            id: contact.id,
-            changes: contact,
+            id: contacts.id,
+            changes: contacts,
           }
         )
       })

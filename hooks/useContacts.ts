@@ -47,22 +47,21 @@ export const useContact =  () => {
     [dispatch]
   )
 
-  const addContact = useCallback(
-    async (arg: { contanct: Contact }) => {
+  const addContact =
+    async (arg: { contancts: Contact }) => {
+      console.log(arg, "====================================================>")
       const action = await dispatch(addContactAction(arg))
+      console.log(action, "====================================================>")
       return unwrapResult(action)
-    },
-    [dispatch]
-  )
+    }
 
-  const editContact = useCallback(
+  const editContact =
     async (arg: { contanct: Contact }) => {
-      
+
       const action = await dispatch(editContactAction(arg))
       return unwrapResult(action)
-    },
-    [dispatch]
-  )
+    }
+
 
   const deleteContact =
     async (arg: { id: number }) => {
