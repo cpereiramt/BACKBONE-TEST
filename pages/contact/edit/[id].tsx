@@ -43,6 +43,8 @@ const EditContact = (props: Props) => {
           <div>
           <Button variant="outlined" color="primary" onClick={() => handleDelete()}>Delete Contact</Button>
             <Button onClick={() => handleUpdate(contact)}>Update Information</Button>
+             <Button variant="outlined" color="primary" onClick={() => router.push('/')} >
+          Back</Button>
           </div>
         </>
       )

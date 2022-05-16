@@ -24,7 +24,9 @@ const ContactTable = (props: Props) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  const handleNewContact = () => {
+    router.push('/contact/add')
+  }
   const handleUpdateRow = (id: number) => {
     router.push(`/contact/edit/${id}`)
   }
@@ -35,7 +37,7 @@ const ContactTable = (props: Props) => {
       <Table aria-label="Contact table">
           <TableHead>
             <TableRow>
-              <TableCell align="center"><AddCircleOutlineRounded /></TableCell>
+              <TableCell align="center"><AddCircleOutlineRounded onClick={() => handleNewContact()} /></TableCell>
             </TableRow>
           <TableRow>
             <TableCell align="center">FirstName</TableCell>

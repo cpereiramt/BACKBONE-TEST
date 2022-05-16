@@ -45,7 +45,7 @@ export const addContactAction = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contact),
     }).then((response: Response) => response.json())
-    return { contacts: result }
+    return { contact: result }
   }
 )
 
@@ -56,14 +56,13 @@ export const editContactAction = createAsyncThunk(
   `${FeatureKey.CONTACT}/edit`,
   async (arg: { contact: Contact }) => {
     const { contact } = arg
-    console.log(arg, 'from action')
     const url = `/api/contact/${arg.id}`
     const result: Contact = await fetch(url, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contact),
     }).then((response: Response) => response.json())
-    return { contacts: result }
+    return { contact: result }
   }
 )
 
