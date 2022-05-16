@@ -1,4 +1,4 @@
-
+/*
 import React, { useEffect } from "react";
 import ContactTable from "../components/Table/";
 import { useContact } from "../hooks";
@@ -29,9 +29,38 @@ function Index(props: Props) {
 
 }
 
-/**
- * @see https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
- */
 
 
 export default Index
+ */
+
+import {
+  NextComponentType, NextPageContext
+} from 'next';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { addTodo } from '../redux/actions';
+import Page from '../redux/container/page';
+import { Store } from '../redux/store';
+
+interface IndexPageContext extends NextPageContext {
+  store: Store;
+}
+
+const IndexPage: NextComponentType<IndexPageContext> = compose()(Page);
+
+IndexPage.getInitialProps = ({ store, req }) => {
+  const isServer = !!req;
+
+  // we can add any custom data here
+  const { todo } = store.getState();
+  store.dispatch(addTodo(Object.assign(todo.item, {
+    value: 'Hello World!',
+  })));
+
+  return {
+    isServer,
+  };
+}
+
+export default connect()(IndexPage);
