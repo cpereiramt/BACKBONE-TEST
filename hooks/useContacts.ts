@@ -16,11 +16,11 @@ import {
 /**
  * CONTACT custom hook
  */
-export const useContact = () => {
+export const useContact =  () => {
   const dispatch = useDispatch()
   const isFetching = useSelector(isFetchingSelector)
   const contact = useSelector(contactSelector)
-  const contacts = useSelector(allContactSelector)?.map((t) => ({
+  const contacts = useSelector(allContactSelector).map((t) => ({
     id: t.id,
     firstName: t.firstName,
     lastName: t.lastName,
@@ -28,7 +28,7 @@ export const useContact = () => {
     phone: t.phone,
   }))
 
-  const fetchAllContacts = useCallback(
+  const fetchAllContacts =
     (arg?: { offset?: number; limit?: number }) => {
       return dispatch(
         fetchAllContactsAction({
@@ -36,9 +36,9 @@ export const useContact = () => {
           limit: arg?.limit || 5,
         })
       ).then(unwrapResult)
-    },
-    [dispatch]
-  )
+    }
+
+
 
   const fetchContact = useCallback(
     (arg: { id: number }) => {
@@ -57,18 +57,18 @@ export const useContact = () => {
 
   const editContact = useCallback(
     async (arg: { contanct: Contact }) => {
+      
       const action = await dispatch(editContactAction(arg))
       return unwrapResult(action)
     },
     [dispatch]
   )
 
-  const deleteContact = useCallback(
-    (arg: { id: number }) => {
-      return dispatch(deleteContactAction(arg)).then(unwrapResult)
-    },
-    [dispatch]
-  )
+  const deleteContact =
+    async (arg: { id: number }) => {
+      const action = await dispatch(deleteContactAction(arg))
+      return unwrapResult(action)
+    }
 
   return {
     isFetching,

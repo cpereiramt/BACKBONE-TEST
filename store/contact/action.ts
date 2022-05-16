@@ -23,8 +23,8 @@ export const fetchAllContactsAction = createAsyncThunk(
 export const fetchContactAction = createAsyncThunk(
   `${FeatureKey.CONTACT}/fetch`,
   async (arg: { id: number }) => {
-    const { id } = arg
-    const url = `/api/contact/${id}`
+
+    const url = `/api/contact/${arg}`
     const result: Contact = await fetch(url, {
       method: "get",
     }).then((response: Response) => response.json())
@@ -56,7 +56,8 @@ export const editContactAction = createAsyncThunk(
   `${FeatureKey.CONTACT}/edit`,
   async (arg: { contact: Contact }) => {
     const { contact } = arg
-    const url = `/api/contact/${contact.id}`
+    console.log(arg, 'from action')
+    const url = `/api/contact/${arg.id}`
     const result: Contact = await fetch(url, {
       method: "put",
       headers: { "Content-Type": "application/json" },
@@ -72,8 +73,7 @@ export const editContactAction = createAsyncThunk(
 export const deleteContactAction = createAsyncThunk(
   `${FeatureKey.CONTACT}/delete`,
   async (arg: { id: number }) => {
-    const { id } = arg
-    const url = `/api/contact/${id}`
+    const url = `/api/contact/${arg}`
     await fetch(url, {
       method: "delete",
     })

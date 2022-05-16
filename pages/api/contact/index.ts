@@ -33,7 +33,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       case "GET":
         // const data = await fetch('https://bkbnchallenge.herokuapp.com/contacts')
         const contacts = await fetchMetaData();
-       console.log(contacts);
         res.status(200).json( contacts );
         break
       case "POST":
