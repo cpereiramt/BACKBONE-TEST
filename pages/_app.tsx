@@ -1,12 +1,11 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/styles";
 import { NextPageContext } from 'next';
-import withRedux from 'next-redux-wrapper';
 import App from "next/app";
 import React from "react";
 import { MuiTheme } from "../components/MuiTheme";
-import store, { Store } from '../redux/store';
-// import { wrapper } from "../store/configureStore";
+import { Store } from '../redux/store';
+import { wrapper } from "../store/configureStore";
 import "../styles/main.css";
 
 interface AppContext extends NextPageContext {
@@ -21,7 +20,7 @@ class MyApp extends App<AppContext> {
   }
 
   render() {
-    const { store, Component, ...props } = this.props;
+    const {  Component, ...props } = this.props;
 
     return (
 
@@ -35,4 +34,4 @@ class MyApp extends App<AppContext> {
   }
 }
 
-export default withRedux(store)(MyApp);
+export default wrapper.withRedux(MyApp);
